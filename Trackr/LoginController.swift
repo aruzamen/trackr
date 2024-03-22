@@ -10,9 +10,11 @@ import UIKit
 class LoginController: UIViewController {
     
     var users: [User] = [
-        User(username: "test", fullname: "Test User", email: "user@mail.com", avatar: "test-avatar"),
+        User(username: "test", fullname: "Test User", email: "test@mail.com", avatar: "test-avatar"),
         User(username: "admin", fullname: "Admin User", email: "admin@mail.com", avatar: "admin-avatar")
     ]
+    
+    @IBOutlet weak var usernameTextfield: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +24,10 @@ class LoginController: UIViewController {
     @IBAction func loginTapped(_ sender: Any) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.currentUser = users.last
+        
+        if usernameTextfield.text == "test" {
+            appDelegate.currentUser = users.first
+        }
         
         self.performSegue(withIdentifier: "homeSegue", sender: nil)
     }

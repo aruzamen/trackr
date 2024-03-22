@@ -16,6 +16,9 @@ class HomeController: UIViewController {
     override func viewDidLoad() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
+        avatarImageView.layer.cornerRadius = 25
+        avatarImageView.layer.masksToBounds = true
+        
         if let currentUser = appDelegate.currentUser {
             emailLabel.text = currentUser.email
             avatarImageView.image = UIImage(named: currentUser.avatar)
